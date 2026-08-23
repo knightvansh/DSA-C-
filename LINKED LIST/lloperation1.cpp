@@ -10,16 +10,15 @@ public:
   this->data = data;
    next = NULL;
      }
- ~Node(){
-       cout<<"node destructor for data="<<data<<endl;
-       if(next != NULL){
-          delete next;
-           next=Null;
+
+    
+      ~Node(){
+        cout<<"~Node="<<data<<endl;
+       if(next != NULL){          
+        delete next;
+         next=NULL;
        }
-
      }
-
-
 };
 
 class List{
@@ -31,13 +30,13 @@ public:
      tail=NULL;
      }
        //destructor of list
-       cout<<"destrcvtor of list\n";
+      
      ~List(){
+       cout<<"List\n";
        if(head != NULL){
           delete head;
           head= NULL;
        }
-
      }
 
 
@@ -89,6 +88,13 @@ public:
    }  newNode->next=temp->next;// new node joined with it, right element of the link list
       temp->next=newNode;  //note joined with the left element of the link. 
  }
+  void pop_front(){
+
+    Node*temp=head;
+    head=head->next;
+    
+  }
+
 
 };
 
@@ -96,14 +102,12 @@ public:
 
 int main(){
         List ll;
-        ll.push_front(5);
-        ll.push_front(4);
         ll.push_front(3);
         ll.push_front(2);
         ll.push_front(1);
-    //1->2->3->4->5->null
+    //1->2->3->null
         ll.push_back(8);
-        ll.insert(34,3);
+        // ll.insert(34,3);
         ll.printList();
         
         
