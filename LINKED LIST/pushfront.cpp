@@ -6,10 +6,20 @@ public:
  int data;
  Node*next;
 
-     Node(int data){
-     this->data = data;
-        next = NULL;
+  Node(int data){
+  this->data = data;
+   next = NULL;
      }
+ ~Node(){
+       cout<<"node destructor for data="<<data<<endl;
+       if(next != NULL){
+          delete next;
+           next=Null;
+       }
+
+     }
+
+
 };
 
 class List{
@@ -20,6 +30,16 @@ public:
      head=NULL;
      tail=NULL;
      }
+       //destructor of list
+       cout<<"destrcvtor of list\n";
+     ~List(){
+       if(head != NULL){
+          delete head;
+          head= NULL;
+       }
+
+     }
+
 
 
  void push_front(int val){
