@@ -69,7 +69,7 @@ public:
        }
   }
    void printList() {
-        Node* temp = head;
+        Node* temp = head;//tenmporary node created
         while(temp != NULL) {
             cout << temp->data <<"->";       //0(n) t.c
             temp = temp->next;
@@ -88,13 +88,69 @@ public:
    }  newNode->next=temp->next;// new node joined with it, right element of the link list
       temp->next=newNode;  //note joined with the left element of the link. 
  }
-  void pop_front(){
 
+  void pop_front(){
+    if(head ==NULL){
+  cout<<"ll is empty\n";
+  return;
+    }
     Node*temp=head;
     head=head->next;
-    
+    temp->next=NULL;
+    delete temp;
   }
 
+
+  void pop_back(){
+   Node*temp=head;
+   while(temp->next->next !=NULL){
+     temp=temp->next;
+   }
+   temp->next =tail;
+   delete tail;
+   tail=temp;
+  }
+
+  //
+int searchItr( int key){
+  Node *temp=head;
+  int idx=0;
+  while(temp != NULL){
+   if(temp->data== key){
+    return idx;
+    break;
+   }
+    temp=temp->next;
+    idx++;
+  }
+
+  return -1;
+
+  }
+
+  int searchRec(int key) {
+        return searchHelper(head, key);
+    }
+
+    int searchHelper(Node*temp, int key) {
+        if(temp== NULL) {
+            return -1;
+        }
+
+        if(temp-> data == key) {
+            return 0; //current idx
+        }
+
+        int idx = searchHelper(temp->next, key);
+        if(idx == -1) {
+            return -1;
+        }
+
+        return idx + 1;
+    }
+
+
+  
 
 };
 
@@ -107,9 +163,18 @@ int main(){
         ll.push_front(1);
     //1->2->3->null
         ll.push_back(8);
+
         // ll.insert(34,3);
+
         ll.printList();
-        
+
+        // ll.pop_front();//
+
+        //  ll.printList();
+
+        //  cout<<ll.searchItr(8)<<endl;
+
+           cout<<ll.searchRec(2)<<endl;
         
 
   return 0;
