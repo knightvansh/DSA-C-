@@ -215,11 +215,7 @@ int main(){
 
   
        
-        // ll.push_front(2);
-        // ll.push_front(3);
-        // ll.push_front(4);
-        // ll.printList();
-
+        
         // ll.head = mergeSort(ll.head);
         // ll.printList();
 
