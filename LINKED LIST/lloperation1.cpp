@@ -13,7 +13,7 @@ public:
 
     
       ~Node(){
-        cout<<"~Node="<<data<<endl;
+        // cout<<"~Node="<<data<<endl;
        if(next != NULL){          
         delete next;
          next=NULL;
@@ -32,7 +32,7 @@ public:
        //destructor of list
       
      ~List(){
-       cout<<"List\n";
+      //  cout<<"List\n";
        if(head != NULL){
           delete head;
           head= NULL;
@@ -149,6 +149,48 @@ int searchItr( int key){
         return idx + 1;
     }
 
+void reverseLL(){
+ Node*prev=NULL;
+ Node*curr=head;
+ while(curr!=NULL){
+   Node*next=curr->next;
+   curr->next=prev;  // reverse operation takes place. 
+   //updation
+   prev=curr;
+   curr=next;
+ }
+  head=prev;
+}
+
+int size(){
+  int  sz=0;
+  Node*temp =head;
+  while(temp!=NULL){
+        temp=temp->next;
+        sz++;
+  }
+return sz;
+}
+
+void removenth(int n){
+   int size = sizeLL();        
+    cout << "size : " << size << endl;   
+        if(n == size){
+           pop_front();
+           return;
+             }
+
+           Node* prev = head;
+         for(int i=1; i<size-n; i++) {
+        prev =prev->next;
+           }
+
+         Node* toDel = prev->next; //node to delete
+           prev>next = prev->next->next;
+
+
+
+}
 
   
 
@@ -174,9 +216,29 @@ int main(){
 
         //  cout<<ll.searchItr(8)<<endl;
 
-           cout<<ll.searchRec(2)<<endl;
+         cout<<ll.searchRec(2)<<endl;
+         
+       //reverse linked list  
+        // ll.reverseLL();
+        // ll.printList();
         
 
   return 0;
 
 }
+
+//     void removeNth(int n) {
+//         int size = sizeLL();
+//         cout << "size : " << size << endl;
+//         if(n == size) {
+//             pop_front();
+//             return;
+//         }
+
+//         Node* temp = head;
+//         for(int i=1; i<size-n; i++) {
+//             temp = temp->next;
+//         }
+
+//         Node* toDel = temp->next; //node to delete
+//         temp->next = temp->next->next;
