@@ -114,7 +114,6 @@ public:
         }
         //temp has tail's prev
         temp->next = NULL;
-        
         delete tail;
         tail = temp;
     }
@@ -126,7 +125,7 @@ public:
     //     }
     // }  
 };
-
+//leetcode 2095,
 //cycle detection
 bool iscycle(Node* head){
   Node* slow=head;
@@ -143,8 +142,8 @@ cout<<" cycle not exist"<<endl;
 return false;
 }
 
-
-void removecycle(Node*){
+//leetcode
+void removecycle(Node* head){
 
     //DETECT CYCLE
    Node* slow = head;
@@ -168,8 +167,8 @@ void removecycle(Node*){
 
 //cycleremoval
    slow=head;
-   //special case when tail is connected to head
-   if (slow=fast){
+   //special case when tail is connected to head(close loop)
+   if (slow==fast){
         while(fast->next != slow) {
             fast = fast->next;
         }
@@ -183,24 +182,100 @@ else{
             fast = fast->next;
         }
           //prev is the last node
-        prev->next = NULl;
+        prev->next = NULL;
+    }
+}
+
+
+
+
+
+    Node* SplitAtMid (Node*head){
+    Node* slow = head;
+    Node* fast = head;
+    Node* prev = NULL;
+    while(fast != NULL && fast->next != NULL) {
+        prev = slow;//slow ki purani value
+        slow = slow->next;
+        fast = fast->next->next;
+         
+       }
+  if(prev != NULL) {
+        prev->next = NULL;
+     }
+ return slow;  //right head
+}
+
+
+Node* merge(Node* h1, Node*h2) {
+    List ans;
+    Node* i = h1;
+    Node* j = h2;
+
+    while(i != NULL && j != NULL) {
+        if(i->data <= j->data) {
+            ans.push_back(i->data);
+            i = i->next;
+        } else {
+            ans.push_back(j->data);
+            j = j->next;
+        }
     }
 
+    while(i != NULL) {
+        ans.push_back(i->data);
+        i = i->next;
+    }
+
+    while(j != NULL) {
+        ans.push_back(j->data);
+        j = j->next;
+    }
+    return ans.head;
 }
+
+
+   Node*mergeSort(Node*head){
+    if(head == NULL || head->next == NULL) {
+        return head;
+    }   
+      Node* righthead= SplitAtMid(head); //righthead = N3 (i.e., 3->4->0).//
+      Node*sortedleft= mergeSort(head);//left head // mergeSort(1->2)
+      Node*sortedright=mergeSort(righthead);
+      return merge(sortedleft,sortedright);//head of sorted ll
+}
+
+
+//
+void zigzagll(NOde * head){
+    Node *  right head=SplitAtMid
+
+}
+
+
+
+
+
 
 int main(){
 
         List ll;
+        ll.push_front(0);
         ll.push_front(4);
         ll.push_front(3);
         ll.push_front(2);
         ll.push_front(1);
-        ll.tail->next=ll.head; //1->2->3->4->1
-        cout << iscycle(ll.head) << endl;
+        // ll.tail->next=ll.head; //1->2->3->4->1
+        // cout << iscycle(ll.head) << endl;
         
-        removeCycle(ll.head);
-        cout << isCycle(ll.head) << endl;
-        ll.printList(); */
+        // removeCycle(ll.head);
+        // cout << isCycle(ll.head) << endl;
+        ll.printList(); 
+        ll.head= mergeSort(ll.head);
+        ll.printList();
+
+
+
 }
 
 

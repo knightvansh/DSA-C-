@@ -148,8 +148,8 @@ int searchItr( int key){
 
         return idx + 1;
     }
-
-void reverseLL(){
+      //  leetcode 206// reverse
+void reverseLL(){ 
  Node*prev=NULL;
  Node*curr=head;
  while(curr!=NULL){
