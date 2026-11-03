@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace  std;
+
+
+class Node{
+    public:
+     string key;
+     int val;
+     Node* next;
+
+    Node( string key,int val){
+    this->key= key;
+    this->val =val;
+    next=NULL;
+    }
+
+
+
+
+
+    void push(){
+
+    }
+
+    void insert(){
+        
+    }
+
+    int  search(){
+        
+    }
+};
+
+
+
+
+
+
+
+
+
+
