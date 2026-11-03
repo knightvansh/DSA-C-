@@ -11,7 +11,7 @@ struct ListNode {
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
-// 1 -https://leetcode.com/problems/linked-list-cycle-ii/description/
+ 1 -https://leetcode.com/problems/linked-list-cycle-ii/description
 class Solution {
 public:
   ListNode *detectCycle(ListNode *head) {
